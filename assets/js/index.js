@@ -42,10 +42,10 @@
         { height: 0 },
         { height: '40vh', duration: 0.8, ease: 'power2.out' }
       )
-      // 2. テキスト出現（letter-spacing + opacity）
+      // 2. テキスト出現（letter-spacing + opacity）— scaleX(1.15)は維持
       .fromTo(text,
-        { letterSpacing: '1em', opacity: 0 },
-        { letterSpacing: '0.25em', opacity: 1, duration: 1.0, ease: EASE_MECH },
+        { letterSpacing: '1em', opacity: 0, scaleX: 1.15 },
+        { letterSpacing: '0.25em', opacity: 1, scaleX: 1.15, duration: 1.0, ease: EASE_MECH },
         '-=0.4'
       )
       // 3. 全体フェードアウト
@@ -71,7 +71,6 @@
     var mainText = document.querySelector('.fv__main-text');
     var letters  = document.querySelectorAll('.fv__letter');
     var sub      = document.querySelector('.fv__sub');
-    var jp       = document.querySelector('.fv__jp');
     var hr       = document.querySelector('.fv__hr');
     var edgeBl   = document.querySelector('.fv__edge--bl');
     var edgeBr   = document.querySelector('.fv__edge--br');
@@ -79,7 +78,7 @@
     var cornerLines = document.querySelectorAll('.fv__corner');
 
     // Step 1: gsap.set — visibility:visible + opacity:0
-    var allElements = [mainText, sub, jp, hr, edgeBl, edgeBr, corners];
+    var allElements = [mainText, sub, hr, edgeBl, edgeBr, corners];
     allElements.forEach(function (el) {
       if (el) gsap.set(el, { visibility: 'visible', opacity: 0 });
     });
@@ -114,13 +113,6 @@
       { opacity: 0, y: 15 },
       { opacity: 1, y: 0, duration: 1.2, ease: EASE_MECH },
       0.3
-    );
-
-    // Japanese copy
-    entrance.fromTo(jp,
-      { opacity: 0, y: 15 },
-      { opacity: 1, y: 0, duration: 1.2, ease: EASE_MECH },
-      0.5
     );
 
     // Horizontal rule
@@ -159,7 +151,6 @@
     var container  = document.querySelector('.fv__container');
     var mainText   = document.querySelector('.fv__main-text');
     var sub        = document.querySelector('.fv__sub');
-    var jp         = document.querySelector('.fv__jp');
     var hr         = document.querySelector('.fv__hr');
     var edgeBl     = document.querySelector('.fv__edge--bl');
     var edgeBr     = document.querySelector('.fv__edge--br');
@@ -214,23 +205,8 @@
       }
     );
 
-    // JP parallax
-    gsap.fromTo(jp,
-      { y: 0 },
-      {
-        y: -60,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: scrollArea,
-          start: '15% top',
-          end: 'bottom top',
-          scrub: true
-        }
-      }
-    );
-
     // Fade out all FV elements
-    var fvFadeElements = [mainText, sub, jp, hr, edgeBl, edgeBr, corners].filter(Boolean);
+    var fvFadeElements = [mainText, sub, hr, edgeBl, edgeBr, corners].filter(Boolean);
     gsap.fromTo(fvFadeElements,
       { opacity: 1 },
       {
@@ -312,14 +288,14 @@
 
     // SELECTED パルスアニメーション
     if (selected) {
+      gsap.set(selected, { opacity: 0.70 });
       pulseTween = gsap.to(selected, {
-        opacity: 0.22,
+        opacity: 1.0,
         duration: 3,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1
       });
-      gsap.set(selected, { opacity: 0.15 });
     }
 
     // リーダーライン座標を計算
@@ -570,7 +546,7 @@
       gsap.fromTo(selected,
         { opacity: 0 },
         {
-          opacity: 0.15, duration: 1.5, ease: 'power2.out',
+          opacity: 0.70, duration: 1.5, ease: 'power2.out',
           scrollTrigger: { trigger: section, start: 'top 70%' }
         }
       );

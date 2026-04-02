@@ -12,18 +12,24 @@
      FV Entrance Animation
      ======================================== */
   function initFVAnimation() {
+    var fv = document.querySelector('.service-fv');
     var title = document.querySelector('.service-fv__title');
     var sub = document.querySelector('.service-fv__sub');
     var hr = document.querySelector('.service-fv__hr');
     var edgeBL = document.querySelector('.service-fv__edge--bl');
     var edgeBR = document.querySelector('.service-fv__edge--br');
 
-    if (!title) return;
+    if (!title || !fv) return;
 
     var isTransition = sessionStorage.getItem('akashiki-transition') === 'active';
     var startDelay = isTransition ? 0.8 : 0.2;
 
-    var tl = gsap.timeline({ delay: startDelay });
+    var tl = gsap.timeline({
+      delay: startDelay,
+      onComplete: function () {
+        initFVShrink(fv);
+      }
+    });
 
     // SERVICE: letter-spacing 0.4em→0.25em + opacity 0→1
     tl.fromTo(title,
@@ -56,6 +62,24 @@
       { opacity: 1, duration: 0.6, ease: GSAP_EASE },
       '-=0.5'
     );
+  }
+
+  /* ========================================
+     FV Shrink Animation (100vh → 50vh)
+     ======================================== */
+  function initFVShrink(fv) {
+    if (!fv) return;
+
+    var shrinkTl = gsap.timeline({ delay: 1.0 });
+
+    shrinkTl.to(fv, {
+      height: '50vh',
+      duration: 0.8,
+      ease: 'cubic-bezier(0.16, 1, 0.3, 1)',
+      onComplete: function () {
+        fv.style.height = '50vh';
+      }
+    });
   }
 
   /* ========================================

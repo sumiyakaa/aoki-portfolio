@@ -77,7 +77,7 @@
   font-weight: 300;
   font-size: 13px;
   letter-spacing: 0.04em;
-  color: var(--c-gray-400);
+  color: var(--c-white);
   margin-top: 16px;
   opacity: 0;
 }
@@ -87,7 +87,7 @@
   font-weight: 300;
   font-size: 11px;
   letter-spacing: 0.1em;
-  color: #333;
+  color: var(--c-white);
   margin-top: 12px;
   opacity: 0;
 }
@@ -112,7 +112,7 @@
   font-weight: 300;
   font-size: 9px;
   letter-spacing: 0.1em;
-  color: #222;
+  color: var(--c-white);
 }
 
 .works-fv__edge--bl {
@@ -147,7 +147,7 @@
   font-weight: 400;
   font-size: 12px;
   letter-spacing: 0.1em;
-  color: var(--c-gray-600);
+  color: var(--c-white);
   background: none;
   border: none;
   padding: 0 0 4px;
@@ -157,7 +157,7 @@
 }
 
 .works-filter__btn:hover {
-  color: var(--c-gray-300);
+  color: var(--c-pure-white);
 }
 
 .works-filter__btn.is-active {
@@ -230,14 +230,14 @@
   font-weight: 300;
   font-size: 10px;
   letter-spacing: 0.1em;
-  color: #333;
+  color: var(--c-white);
   display: block;
   margin-bottom: 8px;
   transition: color 0.3s;
 }
 
 .work-card:hover .work-card__num {
-  color: var(--c-gray-400);
+  color: var(--c-pure-white);
 }
 
 .work-card__name {
@@ -254,7 +254,7 @@
   font-weight: 400;
   font-size: 11px;
   letter-spacing: 0.04em;
-  color: #555;
+  color: var(--c-white);
   margin-top: 6px;
 }
 
@@ -263,7 +263,7 @@
   font-weight: 300;
   font-size: 10px;
   letter-spacing: 0.1em;
-  color: #333;
+  color: var(--c-white);
   display: block;
   margin-top: 8px;
 }

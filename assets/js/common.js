@@ -15,9 +15,7 @@
     const header = document.querySelector('.header');
     if (!header) return;
 
-    let lastScrollY = 0;
     let ticking = false;
-    let headerRevealed = false;
 
     function onScroll() {
       if (ticking) return;
@@ -28,24 +26,15 @@
         const viewH = window.innerHeight;
 
         if (currentY > viewH) {
-          if (!headerRevealed) {
-            header.classList.remove('is-hidden');
-            header.classList.add('is-visible');
-            headerRevealed = true;
-          } else if (currentY < lastScrollY) {
-            header.classList.remove('is-hidden');
-            header.classList.add('is-visible');
-          } else if (currentY > lastScrollY) {
-            header.classList.remove('is-visible');
-            header.classList.add('is-hidden');
-          }
+          // FV通過後は常時表示（下スクロールでも隠れない）
+          header.classList.remove('is-hidden');
+          header.classList.add('is-visible');
         } else {
+          // FV内では非表示
           header.classList.remove('is-visible');
           header.classList.add('is-hidden');
-          headerRevealed = false;
         }
 
-        lastScrollY = currentY;
         ticking = false;
       });
     }

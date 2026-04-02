@@ -406,7 +406,7 @@
 
 .works__thumb {
   display: block;
-  width: auto;
+  width: 640px;
   height: 360px;
   border: 1px solid var(--c-gray-800);
   border-radius: 0;
@@ -595,7 +595,7 @@
   .works { padding: 80px 40px; }
   .works__inner { grid-template-columns: 1fr auto; }
   .works__typo { padding-right: 40px; }
-  .works__thumb { height: 280px; }
+  .works__thumb { width: 480px; height: 270px; }
 
   /* Price */
   .price { padding: 120px 40px; }

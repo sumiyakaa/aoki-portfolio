@@ -74,15 +74,18 @@
 }
 
 .footer__sns-link {
-  font-family: var(--ff-mono);
-  font-size: 11px;
-  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
   color: var(--c-white);
-  transition: color 0.3s;
+  transition: opacity 0.3s;
+}
+
+.footer__sns-link svg {
+  display: block;
 }
 
 .footer__sns-link:hover {
-  color: var(--c-pure-white);
+  opacity: 0.7;
 }
 
 /* ---- Bottom ---- */

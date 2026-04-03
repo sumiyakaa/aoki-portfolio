@@ -489,7 +489,7 @@
       roughness: 0.8
     });
 
-    loader.load('assets/fonts/yujisyuku-regular.json', function (font) {
+    loader.load('assets/fonts/yujisyuku-regular-subset.json', function (font) {
       try {
         var CHARS = ['A', 'K', 'A', 'S', 'H', 'I', 'K', 'I', '\u2014', '\u706F', '\u6577'];
 

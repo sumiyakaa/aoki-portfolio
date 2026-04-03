@@ -2174,7 +2174,51 @@
       initLogoTransfer();
     } else {
       // 初回: 灯篭オープニング
+      var safetyFired = false;
+
+      // Brave等でWebGLオープニングが完了しない場合の強制解除（10秒）
+      var safetyTimeout = setTimeout(function () {
+        if (safetyFired) return;
+        safetyFired = true;
+
+        document.body.classList.remove('is-locked');
+        document.body.style.overflow = '';
+        var lantern = document.querySelector('.lantern-opening');
+        if (lantern) lantern.style.display = 'none';
+        if (window.lenis) window.lenis.start();
+
+        var logo = document.querySelector('.logo-floating');
+        if (logo) {
+          logo.style.position = 'fixed';
+          logo.style.left = '24px';
+          logo.style.top = '18px';
+          logo.style.fontSize = '13px';
+          logo.style.opacity = '1';
+        }
+
+        sessionStorage.setItem('akashiki-splash', 'done');
+
+        fadeInFVElements();
+        revealAndBind();
+        initWireframe();
+        initRepel();
+        initParticles();
+        initOrbs();
+        initRipple();
+        initWorks();
+        initPrice();
+        initClipPathMorph();
+        initSeparatorPulse();
+        initCornerExpansion();
+        initFVCleanup();
+        initLogoTransfer();
+      }, 10000);
+
       playLanternOpening(function () {
+        if (safetyFired) return;
+        safetyFired = true;
+        clearTimeout(safetyTimeout);
+
         // Phase 6: FVメインテキスト出現
         fadeInFVElements();
         revealAndBind();
